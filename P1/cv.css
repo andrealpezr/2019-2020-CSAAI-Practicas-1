@@ -1,0 +1,14 @@
+h1 {
+  color: green;
+  font-size: 16px;
+  font-family: Arial;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+p {
+  color: rgb(100,2,39);
+  text-align: left;
+}
