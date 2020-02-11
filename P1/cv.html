@@ -3,40 +3,114 @@
   <head>
     <meta charset="utf-8">
     <style>
-      <a href="#"></a>
-      <link rel="stylesheet" href="/cv.css">
+      /*<link rel="stylesheet" href="css/cv.css">*/
+
+      body{
+        background-image: url("css/fondo.jpg");
+        margin:70px;
+        font-family: Calibri;
+      }
+      header{
+        background-color: rgb(255,255,255);
+        height: 160px;
+        padding-top: 8px;
+      }
+      article{
+        background-color: rgb(255,255,255);
+        width:50%;
+        float:left;
+      }
+      aside {
+        background-color: rgb(255,255,255);
+        width:40%;
+        float:right;
+      }
+      h1{
+        font-size: 40px;
+      }
+      h4 {
+        text-align: center;
+        font-size: 18px;
+        color: white;
+        background-color: rgb(0,100,990,0.5);
+        border: 5px solid rgb(0,100,995,0);
+        padding: 10px;
+      }
+      p{
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      img{
+        display: inline-block;
+        padding-left:20px;
+      }
+
     </style>
+
     <title>CV</title>
   </head>
+
   <body>
     <div>
-      <h1>Carmen González López</h1>
-      <p>Ingeniera en Sistemas Audiovisuales y Multimedia</p>
+      <header>
+        <h1 style="float:left";><img src="css/Linkedln.jpg" alt="." width="95" height="140"></h1>
+        <br>
+        <h1 style="text-align:center;">Carmen González López</h1>
+        <p style="text-align:center;">Ingeniera en Sistemas Audiovisuales y Multimedia</p>
 
-      <div>
+      </header>
+
+      <!-- Parte de la derecha -->
+      <aside class="derecha">
+
         <h4>DATOS PERSONALES</h4>
+        <img src="" alt=".">
         <p>+34 609 909 009</p>
-        <p>carmengonzalez@alumnos.urjc.es</p>
-        <p>Calle Alcalá, Nº300
+        <img src="" alt="">
+        <p>carmengl@alumnos.urjc.es</p>
+        <img src="css/github.jpg" alt="." width="60" height="60" border-radius="20px">
+        <a href="https://github.com/carmengl98/2019-2020-CSAAI-Practicas">Github</a></li>
+        <img src="" alt="">
+        <p>Calle Alcalá, Nº30 4ºC
         <br>28027, Madrid, España
         </p>
-      </div>
-      <div>
-        <h4>IDIOMAS</h4>
+
+      <h4>IDIOMAS</h4>
         <ul>
-          <li>Inglés B2</li>
-          <li>Alemán B2 </li>
+          <li>Certificado B1 Cambridge</li>
+          <li>Francés A2 </li>
         </ul>
-      </div>
-      <div>
+
+      <h4> HABILIDADES</h4>
+      <img src="css/python-logo.jpg" alt="." width="80" height="80">
+      <img src="css/html-css-js.jpg" alt="." width="80" height="80">
+      <img src="css/matlab.jpg" alt="." width="80" height="80">
+      <img src="css/picky.jpg" alt="." width="80" height="80">
+
+      </aside>
+
+        <!-- Parte de la izquierda -->
+      <article class="izquierda">
+        <h4>APTITUDES</h4>
+        <p>Soy una persona resolutiva, trabajadora, sociable, con muchas ambición por
+        conseguir nuevos objetivos, con capacidad de adaptación, y de trabajar en grupo.</p>
+
         <h4>ESTUDIOS</h4>
-        <p>Título de la ESO en el instituto IES Ramón Arcas Meca (LORCA)</p>
-        <p>Título de Bachillerato en el instituto IES Ramón Arcas Meca (LORCA)</p>
-        <p>Grado en Ingeniera en sistemas audiovisuales y multimedia en la Universidad Rey Juan Carlos (MADRID)</p>
-      </div>
-      <h4>OTROS DATOS</h4>
+        <ul>
+          <li>Título de la ESO en el instituto IES Ramón Arcas Meca. (Lorca)</li>
+          <li>Título de Bachillerato en el instituto IES Ramón Arcas Meca. (Lorca)</li>
+          <li>He cursado el grando elemental en el Conservatorio Nariso Yepes. (Lorca)</li>
+          <li>Grado en Ingeniera en sistemas audiovisuales y multimedia en la Universidad Rey Juan Carlos. (Madrid)</li>
+        </ul>
 
+        <h4>EXPERIENCIA LABORAL</h4>
+        <ul>
+          <li>Profesora particular.</li>
+          <li>Cuidando niños.</li>
+        </ul>
 
-    </div>
+      </article>
+
+  </div>
   </body>
 </html>
