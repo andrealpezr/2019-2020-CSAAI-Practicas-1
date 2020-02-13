@@ -1,9 +1,68 @@
 body{
-  margin:70px;
+  background-image: url("ss.gif");
+  /* background-repeat: no-repeat; */
+  background-position: top;
+  background-size: 600px;
   font-family: Calibri;
+  padding:10px;
+  margin: 100px;
+  /* flex box??? */
 }
 header{
   background-color: rgb(255,255,255);
   height: 160px;
   padding-top: 8px;
+}
+h1{
+  font-size: 40px;
+}
+h4 {
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  background-color: #CF2918;
+  border: 5px solid #CF2918;
+  padding: 10px;
+}
+.perfil{
+  background-color: rgb(255,255,255,0.85);
+  padding: 80px;
+  border: solid;
+  border-color: red;
+  margin: 50px;
+  line-height:20px;
+  text-align: center;
+}
+.datos{
+  background-color: rgb(255,255,255,0.85);
+  padding: 80px;
+  border: solid;
+  border-color: red;
+  margin: 50px;
+  line-height:20px;
+}
+.once{
+  background-color: rgb(255,255,255,0.85);
+  padding: 90px;
+  border: solid;
+  border-color: red;
+  margin: 50px;
+  line-height:20px;
+  text-align: center;
+}
+#f_perfil{
+  width: 25%;
+  float: left;
+  padding: 0px;
+}
+.f_datos{
+  width:26px;
+  height:22px;
+  float: left;
+  padding-left:20px;
+}
+.f_boton{
+  width:40px;
+  height:40px;
+  align-items: center;
 }
