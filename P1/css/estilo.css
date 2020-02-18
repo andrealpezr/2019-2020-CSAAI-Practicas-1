@@ -1,20 +1,15 @@
 body{
   background-image: url("ss.gif");
-  /* background-repeat: no-repeat; */
   background-position: top;
   background-size: 600px;
-  font-family: Calibri;
+  font-family: 'Times New Roman';
   padding:10px;
   margin: 100px;
-  /* flex box??? */
+
 }
-header{
-  background-color: rgb(255,255,255);
-  height: 160px;
-  padding-top: 8px;
-}
+
 h1{
-  font-size: 40px;
+  font-size: 65px;
 }
 h4 {
   text-align: center;
@@ -27,8 +22,6 @@ h4 {
 .perfil{
   background-color: rgb(255,255,255,0.85);
   padding: 80px;
-  border: solid;
-  border-color: red;
   margin: 50px;
   line-height:20px;
   text-align: center;
@@ -36,16 +29,12 @@ h4 {
 .datos{
   background-color: rgb(255,255,255,0.85);
   padding: 80px;
-  border: solid;
-  border-color: red;
   margin: 50px;
   line-height:20px;
 }
 .once{
   background-color: rgb(255,255,255,0.85);
   padding: 90px;
-  border: solid;
-  border-color: red;
   margin: 50px;
   line-height:20px;
   text-align: center;
@@ -65,4 +54,5 @@ h4 {
   width:40px;
   height:40px;
   align-items: center;
+  padding: 10px;
 }
