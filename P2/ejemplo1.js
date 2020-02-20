@@ -1,4 +1,4 @@
-console.log('ejecutando js...');
-
 const test= document.getElementById('test');
-console.log(test.innertHTML)
+
+console.log('Texto del párrafo:');
+console.log(test.innertHTML);
