@@ -1,4 +1,4 @@
 const test= document.getElementById('test');
 
 console.log('Texto del párrafo:');
-console.log(test.innertHTML);
+console.log(test.innerHTML);
