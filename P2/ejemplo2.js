@@ -1,8 +1,11 @@
-console.log("Ejecutando js..");
+console.log("Ejecutando JS...");
+
+// -- Acceder al párrafo de prueba
 const test = document.getElementById('test');
 
-test.onclik = ()=>{
-  console.log("click!");
+//-- Funcion de retrollamada
+test.onclick = () => {
+  console.log("Click!");
 
   //-- Cambiar el color de fondo
   //-- Si no tenia color asignado, poner amarillo
