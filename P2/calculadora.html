@@ -9,13 +9,13 @@
      <!-- Programa en Javascript  -->
     <script src=calculadora.js defer>   </script>
   </head>
-  <body>
+  <body onload="init()">
     <div class="calculadora">
 
     <div class="numeros">
       <p id="resultado"></p>
       <br>
-      <button id= "7" type="button" name="7">7</button>
+      <button id= "7">7</button>
       <button id= "8" type="button" name="8">8</button>
       <button id= "9" type="button" name="9">9</button>
       <br>
@@ -27,14 +27,14 @@
       <button id= "2" type="button" name="2">2</button>
       <button id= "3" type="button" name="3">3</button>
       <br>
-      <button id= "0" type="button" name="0">0</button>
+      <button id= "0">0</button>
       <button id= "coma" type="button" name=".">.</button>
       <button id= "igual" type="button" name="=">=</button>
     </div>
     <div class="operadores">
       <button id= "AC" type="button" name="AC">AC</button>
       <br>
-      <button id= "del" type="button" name="delete">DEL</button>
+      <button id= "reset" type="button" name="reset">DEL</button>
       <br>
       <button id= "suma" type="button" name="+">+</button>
       <button id= "resta" type="button" name="-">-</button>
