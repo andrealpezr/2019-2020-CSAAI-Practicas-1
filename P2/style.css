@@ -24,6 +24,7 @@ button{
   width:300px;
   height: 100px;
   background-color: white;
+  overflow-y: scroll;
 
 }
 .numeros{
