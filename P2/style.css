@@ -24,9 +24,9 @@ button{
   display: block;
   text-align: center;
   width:260px;
-  height: 100px;
+  height: 60px;
   background-color: white;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 #cero{
   width:120px;

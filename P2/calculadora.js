@@ -1,41 +1,48 @@
 console.log("Ejecutando JS...");
 
-  var display = document.getElementById("display");
-  var igual = document.getElementById("igual");
-  var coma = document.getElementById("coma");
-  var reset = document.getElementById("reset");
-  var delete = document.getElementById("delete");
-  var suma = document.getElementById("suma");
-  var resta = document.getElementById("resta");
-  var multiplicacion = document.getElementById("multiplicacion");
-  var division = document.getElementById("division");
+display = document.getElementById("display")
+igual = document.getElementById("igual")
+coma = document.getElementById("coma")
+reset = document.getElementById("reset")
+del = document.getElementById("delete")
+suma = document.getElementById("suma")
+resta = document.getElementById("resta")
+multiplicacion = document.getElementById("multiplicacion")
+division = document.getElementById("division")
 
-  //no hace falta poner var, va a funcionar igual
-  //Variable let
-  let numeros = document.getElementsByClassName("numero");
-  for(i=0; i<numeros.length; i++){
-    numeros[i].onclick =(ev) =>{
-    // que es tarjet??????
-    numero(ev.target);
-    }
-  }
 
-  function digito(boton){
-    if(display.innerHTML=="0") {
-      display.innerHTML = boton.value;
-    }else{
-      display.innerHTML += boton.value;
-    }
+//Variable let
+let numeros = document.getElementsByClassName("numero");
+for(i=0; i<numeros.length; i++){
+  numeros[i].onclick = (ev) =>{
+  digito(ev.target);  // esto es la llamada a la funcion de abajo
   }
+}
 
-  suma.onclick = () => {
-    display.innerHTML += "+";
+function digito(boton){
+  if(display.innerHTML=="0") {
+    display.innerHTML = boton.value;
+  }else{
+    display.innerHTML += boton.value;
   }
+}
 
-  igual.onclick = () => {
-    display.innerHTML = eval(display.innerHTML);
-  }
+suma.onclick = () => {
+  display.innerHTML += suma.value;
+}
 
-  reset.onclick = () => {
-    display.innerHTML = "0";
-  }
+multiplicacion.onclick = () => {
+  display.innerHTML *= multiplicacion.value;
+}
+
+igual.onclick = () => {
+  display.innerHTML = eval(display.innerHTML);
+}
+
+coma.onclick = () => {
+  display.innerHTML += ".";
+}
+
+reset.onclick = () => {
+  display.innerHTML = "0";
+}
