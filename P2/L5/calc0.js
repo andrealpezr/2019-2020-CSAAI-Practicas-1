@@ -23,13 +23,14 @@ function digito(boton){
 }
 // -- Insertar digito 1
 // el "1", "2" son un números mágicos y estos si se pueden evitar mejor.
-
 //-- Insertar simbolo de sumar
+//inseta lo de js en html ; reemplaza el contenido de <body> por suma.value
 suma.onclick = () => {
   display.innerHTML += suma.value;
 }
 
 //-- Evaluar la expresion
+  //Cuando ponemos ()=>{} eso ya es una funcion
 igual.onclick = () => {
   display.innerHTML = eval(display.innerHTML);
 }
