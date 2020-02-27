@@ -3,7 +3,7 @@ console.log("Ejecutando JS...");
   var display = document.getElementById("display");
   var igual = document.getElementById("igual");
   var coma = document.getElementById("coma");
-  var reset = document.getElementById("AC");
+  var reset = document.getElementById("reset");
   var delete = document.getElementById("delete");
   var suma = document.getElementById("suma");
   var resta = document.getElementById("resta");
@@ -34,4 +34,8 @@ console.log("Ejecutando JS...");
 
   igual.onclick = () => {
     display.innerHTML = eval(display.innerHTML);
+  }
+
+  reset.onclick = () => {
+    display.innerHTML = "0";
   }
