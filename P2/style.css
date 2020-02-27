@@ -20,7 +20,7 @@ button{
   height: 500px;
   border-radius: 20px;
 }
-#resultado{
+#display{
   display: block;
   text-align: center;
   width:260px;
