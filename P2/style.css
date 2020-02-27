@@ -1,36 +1,38 @@
 body{
   background-color: white;
 }
-.calculadora{
-  display: block;
-  margin: 40px;
-  background-color: tomato;
-  width: 500px;
-  height: 600px;
-  border-radius: 20px;
-}
+
 button{
   background-color: white;
-  font-size: 18px;
+  font-size: 16px;
   width:50px;
   height: 50px;
   margin: 8px;
+  border-radius: 5px;
+}
+.calculadora{
+  font-family: cursive;
+  display: block;
+  margin: 80px;
+  padding: 20px;
+  background-color: tomato;
+  width: 400px;
+  height: 500px;
+  border-radius: 20px;
 }
 #resultado{
   display: block;
   text-align: center;
-  front-size:20px;
-  margin: 40px;
-  width:300px;
+  width:260px;
   height: 100px;
   background-color: white;
   overflow-y: scroll;
-
 }
-.numeros{
-  font-family: cursive;
-  float:left;
+#cero{
+  width:120px;
+  height: 50px;
 }
-.operadores{
-  padding: 0px;
+#igual{
+  width:120px;
+  height: 50px;
 }
