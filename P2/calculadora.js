@@ -31,8 +31,12 @@ suma.onclick = () => {
   display.innerHTML += suma.value;
 }
 
+division.onclick = () => {
+  display.innerHTML += division.value;
+}
+
 multiplicacion.onclick = () => {
-  display.innerHTML *= multiplicacion.value;
+  display.innerHTML += multiplicacion.value;
 }
 
 igual.onclick = () => {
@@ -45,4 +49,16 @@ coma.onclick = () => {
 
 reset.onclick = () => {
   display.innerHTML = "0";
+}
+
+del.onclick = () => {
+  display.innerHTML = function eliminar(e) =>{
+    if(e.keyCode == 8) {
+      val = document.getElementById('display').innerHTML;
+      if(val.length != 0){
+          val = val.substring(0, val.length - 1);
+          display.innerHTML = val;
+        }
+    }
+  }
 }
