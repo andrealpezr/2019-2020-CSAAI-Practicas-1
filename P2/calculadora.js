@@ -19,6 +19,14 @@ for(i=0; i<numeros.length; i++){
   }
 }
 
+function encender(boton){
+  console.log(boton.value);
+  if ((display.innerHTML == " ") & (boton.value == "AC")) {
+    display.innerHTML == "0" ;
+  } else{
+    display.innerHTML == " ";
+  }
+}
 function digito(boton){
   if(display.innerHTML=="0") {
     display.innerHTML = boton.value;
@@ -26,6 +34,7 @@ function digito(boton){
     display.innerHTML += boton.value;
   }
 }
+
 
 suma.onclick = () => {
   display.innerHTML += suma.value;
@@ -51,14 +60,14 @@ reset.onclick = () => {
   display.innerHTML = "0";
 }
 
-del.onclick = () => {
-  display.innerHTML = function eliminar(e) =>{
-    if(e.keyCode == 8) {
-      val = document.getElementById('display').innerHTML;
-      if(val.length != 0){
-          val = val.substring(0, val.length - 1);
-          display.innerHTML = val;
-        }
-    }
-  }
-}
+//del.onclick = () => {
+  //display.innerHTML = function eliminar(e) =>{
+    //if(e.keyCode == 8) {
+      //val = document.getElementById('display').innerHTML;
+      //if(val.length != 0){
+        //  val = val.substring(0, val.length - 1);
+        //  display.innerHTML = val;
+        //}
+    //}
+//  }
+//}
