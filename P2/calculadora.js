@@ -5,12 +5,15 @@ igual = document.getElementById("igual")
 coma = document.getElementById("coma")
 reset = document.getElementById("reset")
 del = document.getElementById("delete")
-suma = document.getElementById("suma")
-resta = document.getElementById("resta")
-multiplicacion = document.getElementById("multiplicacion")
-division = document.getElementById("division")
 
+operacion = {
+  suma : document.getElementById("suma"),
+  resta : document.getElementById("resta"),
+  multiplicacion : document.getElementById("multiplicacion"),
+  division : document.getElementById("division"),
+},
 
+console.log(suma);
 //Variable let
 let numeros = document.getElementsByClassName("numero");
 for(i=0; i<numeros.length; i++){
@@ -35,9 +38,12 @@ function digito(boton){
   }
 }
 
+operacion.onclick = () => {
+  display.innerHTML += operacion.suma;
+}
 
-suma.onclick = () => {
-  display.innerHTML += suma.value;
+resta.onclick = () => {
+  display.innerHTML += resta.value;
 }
 
 division.onclick = () => {
@@ -59,15 +65,3 @@ coma.onclick = () => {
 reset.onclick = () => {
   display.innerHTML = "0";
 }
-
-//del.onclick = () => {
-  //display.innerHTML = function eliminar(e) =>{
-    //if(e.keyCode == 8) {
-      //val = document.getElementById('display').innerHTML;
-      //if(val.length != 0){
-        //  val = val.substring(0, val.length - 1);
-        //  display.innerHTML = val;
-        //}
-    //}
-//  }
-//}
