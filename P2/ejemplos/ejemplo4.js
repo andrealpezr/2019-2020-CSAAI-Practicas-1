@@ -2,7 +2,8 @@
 //-- Cada vez aue se hace click en el se invoca a esta funcion
 function manejador_parrafo()
 {
-  // llamamos a la funcion abajo y la convertimos en un evento ??
+  // usamos la funcion como un objeto?? ;
+  // y se ejecutará cada vez que se produzca el evnto onclick??
   console.log("Click sobre el párrafo...")
 }
 
