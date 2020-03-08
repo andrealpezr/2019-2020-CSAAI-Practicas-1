@@ -1,8 +1,13 @@
 body{
-  background-color: lightblue;
+  background: url("gi.gif");
 }
-
+@font-face {
+  font-family: "digital-7";
+  src : url( "digital-7.ttf" );
+  color: white;
+}
 button{
+  font-family: 'digital-7';
   background-color: #fff;
   border: none;
   font-size: 25px;
@@ -17,7 +22,7 @@ button:hover {
 }
 
 .calculadora{
-  font-family: sans-serif;
+  font-family: 'digital-7';
   display: block;
   margin: auto;
   margin-top: 30px;
@@ -36,7 +41,9 @@ button:hover {
 
 #display{
   display: block;
-  padding: 10%;
+  font-size: 25px;
+  padding: 35px;
+  margin: null;
   border-radius: 3px;
   text-align: center;
   background-color: white;
