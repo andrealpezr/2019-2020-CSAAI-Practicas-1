@@ -13,7 +13,7 @@ operacion = {
   division : document.getElementById("division"),
 },
 
-console.log(suma);
+
 //Variable let
 let numeros = document.getElementsByClassName("numero");
 for(i=0; i<numeros.length; i++){
