@@ -7,27 +7,33 @@ reset = document.getElementById("reset")
 del = document.getElementById("delete")
 // Los estados de la máquina los implementamos mediante un objeto cuyas propiedades
 // son los estados, y a los que asinamos un número diferente.
-const estados = {
-  init: 0,
-  op1: 1,
-  operation: 2,
-  op2_init: 3,
-  op2: 4,
-}
+const ESTADO  =  {
+  INIT : 0 ,
+  OP1 : 1 ,
+  OPERACIÓN : 2 ,
+  OP2 : 3 ,
+  OPERADO : 4 ,
+},
+//-- Variable de estado
+let estado = ESTADO.INIT;
+
+// Necesitamos tener tres funciones de retrollamada: una para los dígitos, otra
+// para los operandos y otra para la tecla igual, que calcula el resultado final
 
 //Variable let
 let numeros = document.getElementsByClassName("numero");
 for(i=0; i<numeros.length; i++){
   numeros[i].onclick = (ev) => {
-  digito(ev.target) // esto es la llamada a la funcion de abajo
+  digito(ev.target.value) // esto es la llamada a la funcion de abajo
  }
 }
 
 function digito(boton){
-  if(display.innerHTML=="0") {
-    display.innerHTML = boton.value;
+  if(estado == ESTADO.INIT) {
+    display.innerHTML = boton;
+    estado = ESTADO.OP1;
   }else{
-    display.innerHTML += boton.value;
+    display.innerHTML += boton;
   }
 }
 
