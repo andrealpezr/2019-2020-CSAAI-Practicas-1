@@ -17,8 +17,8 @@ function main()
   //-- Definir el objeto BOLA
   var bola = {
     //-- Posición inicial de la pelota
-    x_ini: 50,
-    y_ini: 50,
+    x_init: 50,
+    y_init: 50,
 
     //-- Dimensiones de la Bola
     width: 5,
