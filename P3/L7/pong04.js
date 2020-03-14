@@ -34,15 +34,17 @@ ctx.fill();
 //--------- Dibujar la red
 ctx.beginPath();
 
-//-- Estilo de la linea: discontinua
+//-- Estilo de la linea: discontinua!!!!!
 //-- Trazos de 10 pixeles, y 10 de separacion
 ctx.setLineDash([10, 10]);
 ctx.strokeStyle = 'white';
-ctx.lineWidth = 2;
+ctx.lineWidth = 2;  //ancho de la linea
+
+//jugamos con el tamaño del canvas para poner la red
 //-- Punto superior de la linea. Su coordenada x está en la mitad
 //-- del canvas
-ctx.moveTo(canvas.width/2, 0);
+ctx.moveTo(canvas.width/2, 10);
 
 //-- Dibujar hasta el punto inferior
-ctx.lineTo(canvas.width/2, canvas.height);
+ctx.lineTo(canvas.width/2, canvas.height-10);
 ctx.stroke();
