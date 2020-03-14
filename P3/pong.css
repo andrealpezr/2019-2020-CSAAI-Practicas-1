@@ -1,9 +1,18 @@
 body{
   background-color: #E1B41D;
 }
+@font-face {
+  font-family: "p1";
+  src : url( "p1.ttf" );
+  volor black;
+}
 
 #display{
   background-color: black;
-  border-radius: 15px;
 
+}
+
+p{
+  font-family: "p1";
+  font-size: 25px;
 }
