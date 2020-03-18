@@ -79,7 +79,7 @@ function animacion()
 //-- Arrancar la animación
 setInterval(()=>{
   animacion();
-},16);
+},16); //que significa el 16??
 
 //-- Obtener el boton de dar un "paso"
 const paso = document.getElementById("paso");
