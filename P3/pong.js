@@ -5,13 +5,10 @@
 
 console.log("Ejecutando JS...");
 
-const canvas = document.getElementById("canvas");
-
+var canvas = document.getElementById("canvas");
 console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 
 const ctx = canvas.getContext("2d");
-var canvas = document.getElementById('display')
-
 
 //-- Definir los objetos sin function
 //-- Objeto: Bola
@@ -101,5 +98,13 @@ function draw() {
   ctx.fillText("0", 200, 80);
   ctx.fillText("1", 340, 80);
 }
+
+//-- Inicializa la bola: A su posicion inicial
+bola.x = bola.x_ini;
+bola.y = bola.y_ini;
+
+//-- Inicializar la raqueta a su posicion inicial
+raqI.x = raqI.x_ini;
+raqI.y = raqI.y_ini;
 
 draw();
