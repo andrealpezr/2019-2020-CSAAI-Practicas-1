@@ -5,27 +5,55 @@
 
 console.log("Ejecutando JS...");
 
-//-- Obtener el objeto canvas
 const canvas = document.getElementById("canvas");
 
-//-- Sus dimensiones las hemos fijado en el fichero HTML.
-//-- Las imprimimos en la consola
 console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 
-//-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
-
-//-- Crear el canvas
 var canvas = document.getElementById('display')
-canvas.width = 600;
-canvas.height = 400;
 
-//-- Obtener el contexto del canvas
-var ctx = canvas.getContext("2d");
 
-//-- Definir el objeto BOLA y otros objetos sin function
-// var bola = {
-// }
+//-- Definir los objetos sin function
+//-- Objeto: Bola
+const bola = {
+
+  //-- Constante: Tamaño de la bola
+  size : 5,
+
+  //-- Contante: Posicion inicial de la bola
+  x_ini : 100,
+  y_ini : 200,
+
+  //-- Posicion generica de la bola
+  x : 0,
+  y : 0,
+
+  //-- Velocidad inicial de la bola
+  vx_ini : 6,
+  vy_ini : 3,
+
+  //-- Velocidad genérica de la bola
+  //-- Inicialmente a cero
+  vx : 0,
+  vy : 0,
+}
+
+//-- Objeto raqueta
+const raqI = {
+  //-- Constante: Tamaño de la raqueta
+  width : 10,
+  height: 40,
+
+  //-- Constante: Posicion inicial
+  x_ini : 50,
+  y_ini : 100,
+
+  //-- Constante: Velocidad
+  v_ini : 3,
+
+  //-- Velocidad (variable)
+  v : 0,
+}
 
 //-- Pintar todos los objetos en el canvas
 function draw() {
