@@ -1,12 +1,54 @@
 body{
-  background-color: #E1B41D;
+  background-color: white;
 }
+
 @font-face {
   font-family: "p1";
   src : url( "p1.ttf" );
   volor black;
 }
 
+button{
+  width: 60px;
+  height: 20px;
+  background-color: black;
+  border-radius: 40px;
+  margin-left: 60px;
+  float: left;
+}
+
+.juego{
+ background-color: #E1B41D;
+ padding: 40px 0px 0px 60px;
+ width: 660px;
+ height: 1000px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 10px 10px 90px 90px;
+}
+
+.titulo{
+  background-color: black;
+  width: 600px;
+  height: 70px;
+  border-radius: 30px;
+  position: relative;
+  top: -40px;
+}
+
+img{
+  width: 300px;
+  height: 60px;
+  position: relative;
+  left: 150px;
+}
+
+#altavoz{
+  width: 80px;
+  height: 80px;
+  position: relative;
+  left: 180px;
+}
 #canvas{
   background-color: black;
 

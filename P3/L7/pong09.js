@@ -99,6 +99,6 @@ const sacar = document.getElementById("sacar");
 //-- También restablecemos la posicion inicial
 sacar.onclick = () => {
   bola_x = 50;
-  bola_vx = 6;
+  bola_vx = 1;
   console.log("Saque!");
 }

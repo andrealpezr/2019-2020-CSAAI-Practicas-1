@@ -107,11 +107,10 @@ function animacion()
   //-- Actualizar la raqueta con la velocidad actual
   raqI.y += raqI.v;
 
-  //-- Comprobar si la bola ha alcanzado el límite derecho
-  //-- Si es así, se cambia de signo la velocidad, para
-  // que "rebote" y vaya en el sentido opuesto
-  if (bola.x >= canvas.width) {
-    //-- Hay colisión. Cambiar el signo de la bola
+  //-- Comprobar si la bola ha alcanzado el límite derecho o izq
+  if (bola.x >= canvas.width){
+    bola.vx = bola.vx * -1;
+  }else if(bola.x <= canvas.width) {
     bola.vx = bola.vx * -1;
   }
 
