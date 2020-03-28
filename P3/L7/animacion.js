@@ -1,3 +1,10 @@
+// Actualizar las posiciones de los objetos. Cada objeto móvil tendrá unas coordenadas
+// que van evolucionando con el tiempo. Hay que calcular sus nuevas posiciones
+// Borrar el canvas
+// Pintar en el canvas todos los objetos visibles
+// Repetir
+
+
 // Reset: Llevar la bola a su posición inicial
 // Init: Inicializar la bola, pasándole como argumento el contexto del canvas
 // Draw: Dibujar la bola
