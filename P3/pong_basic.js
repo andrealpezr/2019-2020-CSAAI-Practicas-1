@@ -1,3 +1,4 @@
+
 console.log("Ejecutando JS...");
 
 var canvas = document.getElementById("canvas");
@@ -32,6 +33,37 @@ const bola = {
   vy : 0,
 }
 
+//-- Objeto raqueta
+const raqD = {
+
+  width : 10,
+  height: 40,
+
+  x_ini : 540,
+  y_ini : 200,
+
+  //-- Constante: Velocidad
+  v_ini : 3,
+
+  //-- Velocidad (variable)
+  v : 0,
+}
+
+//-- Objeto raqueta
+const raqI = {
+
+  width : 10,
+  height: 40,
+
+  x_ini : 50,
+  y_ini : 100,
+
+  //-- Constante: Velocidad
+  v_ini : 3,
+
+  //-- Velocidad (variable)
+  v : 0,
+}
 
 function draw() {
 
@@ -47,9 +79,11 @@ function draw() {
   ctx.beginPath();
   ctx.fillStyle='white';
 
-  //-- Dibujar las raquetas
-  raqI.draw();
-  raqD.draw();
+  //-- Raqueta derecha
+  ctx.rect(raqD.x, raqD.y, raqD.width, raqD.height);
+
+  //-- Raqueta izquierda
+  ctx.rect(raqI.x, raqI.y, raqI.width, raqI.height);
 
   //pintar
   ctx.fill();
@@ -82,8 +116,9 @@ function animacion()
   //-- Actualizar las posiciones de los objetos móviles
 
   //-- Actualizar la raqueta con la velocidad actual
-  raqI.update();
-  raqD.update();
+  raqD.y += raqD.v;
+  raqI.y += raqI.v;
+  console.log('no seeeeee');
 
 
 //-- Hay colisión. Cambiar el signo de la bola
@@ -134,14 +169,11 @@ function animacion()
 bola.x = bola.x_ini;
 bola.y = bola.y_ini;
 
-//-- Crear las raquetas
-const raqI = new Raqueta(ctx);
-const raqD = new Raqueta(ctx);
-
-//-- Cambiar las coordenadas de la raqueta derecha
-raqD.x_ini = 540;
-raqD.y_ini = 300;
-raqD.init();
+//-- Inicializar la raqueta a su posicion inicial
+raqI.x = raqI.x_ini;
+raqI.y = raqI.y_ini;
+raqD.x = raqD.x_ini;
+raqD.y = raqD.y_ini;
 
 
 // función animacion() se llame periódicamente, con una frecuencia de 60Hz (unos 17ms). Usamos la función setInterval() que ya conocemos para arrancar la animación
