@@ -1,7 +1,3 @@
-// Reset: Llevar la bola a su posición inicial
-// Init: Inicializar la bola, pasándole como argumento el contexto del canvas
-// Draw: Dibujar la bola
-// Update: Actualizar el estado de la bola
 
 console.log("Ejecutando JS...");
 
@@ -32,6 +28,22 @@ const bola = {
 }
 
 //-- Objeto raqueta
+const raqD = {
+
+  width : 10,
+  height: 40,
+
+  x_ini : 540,
+  y_ini : 200,
+
+  //-- Constante: Velocidad
+  v_ini : 3,
+
+  //-- Velocidad (variable)
+  v : 0,
+}
+
+//-- Objeto raqueta
 const raqI = {
 
   width : 10,
@@ -47,7 +59,6 @@ const raqI = {
   v : 0,
 }
 
-//-- Pintar todos los objetos en el canvas
 function draw() {
 
   //---- Dibujar la Bola
@@ -62,11 +73,11 @@ function draw() {
   ctx.beginPath();
   ctx.fillStyle='white';
 
+  //-- Raqueta derecha
+  ctx.rect(raqD.x, raqD.y, raqD.width, raqD.height);
+
   //-- Raqueta izquierda
   ctx.rect(raqI.x, raqI.y, raqI.width, raqI.height);
-
-  //-- Raqueta derecha
-  ctx.rect(540, 300, 10, 40);
 
   //pintar
   ctx.fill();
@@ -77,7 +88,7 @@ function draw() {
   ctx.setLineDash([10, 10]);
   ctx.strokeStyle = 'white';
   ctx.lineWidth = 2;
-  
+
   //-- Punto superior de la linea. Su coordenada x está en la mitad del canvas
   ctx.moveTo(canvas.width/2, 0);
 
@@ -92,6 +103,49 @@ function draw() {
   ctx.fillText("1", 340, 80);
 }
 
+  //-- Actualizar las posiciones de los objetos móviles
+function animacion()
+{
+
+  //-- Actualizar las posiciones de los objetos móviles
+
+  //-- Actualizar la raqueta con la velocidad actual
+  raqD.y += raqD.v;
+  raqI.y += raqI.v;
+  console.log('no seeeeee');
+
+
+//-- Hay colisión. Cambiar el signo de la bola
+  if (bola.x >= canvas.width) {
+    bola.vx = bola.vx * -1;
+  }else if(bola.x <= 0){
+    bola.vx = bola.vx * -1;
+  }else if(bola.y >= canvas.height){
+    bola.vy = bola.vy * -1;
+  }else if(bola.y <= 0 ){
+    bola.vy = bola.vy * -1;
+  }
+
+  //-- Comprobar si hay colisión con la raqueta izquierda
+  if (bola.x >= raqI.x && bola.x <=(raqI.x + raqI.width) &&
+      bola.y >= raqI.y && bola.y <=(raqI.y + raqI.height)) {
+    bola.vx = bola.vx * -1;
+  }else if (bola.x >= raqD.x && bola.x <=(raqD.x + raqD.width) &&
+      bola.y >= raqD.y && bola.y <=(raqD.y + raqD.height)){
+    bola.vx = bola.vx * -1;
+    }
+
+  //-- Actualizar coordenada x de la bola, en funcion de
+  //-- su velocidad
+  bola.x += bola.vx;
+
+  //-- Borrar la pantalla
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+
+  //-- Dibujar el nuevo frame
+  draw();
+
+}
 
 //-- Inicializa la bola: A su posicion inicial
 bola.x = bola.x_ini;
@@ -100,5 +154,69 @@ bola.y = bola.y_ini;
 //-- Inicializar la raqueta a su posicion inicial
 raqI.x = raqI.x_ini;
 raqI.y = raqI.y_ini;
+raqD.x = raqD.x_ini;
+raqD.y = raqD.y_ini;
 
-draw();
+
+// función animacion() se llame periódicamente, con una frecuencia de 60Hz (unos 17ms). Usamos la función setInterval() que ya conocemos para arrancar la animación
+setInterval(()=>{
+  animacion();
+},16);
+
+//-- Obtener el boton de saque
+const start = document.getElementById("start");
+
+start.onclick = () => {
+  bola.x += bola.x_ini;
+  bola.vx += bola.vx_ini;
+  console.log("Saque!");
+}
+
+//-- Obtener el boton de reset
+const reset = document.getElementById("reset");
+
+reset.onclick = () => {
+  bola.x = bola.x_ini;
+  bola.vx = bola.vx_ini;
+  console.log("Reset!");
+}
+
+//-- Retrollamada de las teclas OTRA FORMA
+window.onkeydown = (e) => {
+  switch (e.key) {
+    //-- Tecla ESPACIO: Saque
+    case " ":
+      console.log('espacio');
+      bola.x += bola.x_ini;
+      bola.vx += bola.vx_ini;
+      raqD.y += -raqD.v_ini;
+      raqI.v += raqI.v;
+      break;
+    case "q":
+      console.log('up');
+      raqI.y += raqI.v_ini * -1;
+      break;
+    case "a":
+      console.log('down');
+      raqI.y += raqI.v_ini;
+      break;
+    case "p":
+      raqD.v = raqD.v_ini * -1;
+      break;
+    case "l":
+      raqD.v = raqD.v_ini;
+      break;
+    }
+}
+
+//-- Retrollamada de la liberacion de teclas
+window.onkeyup = (e) => {
+  if (e.key == "a" || e.key == "q"){
+    //-- Quitar velocidad de la raqueta
+    raqI.v = 0;
+  }
+  if (e.key == "p" || e.key == "l") {
+    raqD.v = 0;
+  }
+
+}
