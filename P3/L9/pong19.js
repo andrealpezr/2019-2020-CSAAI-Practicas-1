@@ -11,8 +11,8 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 const ctx = canvas.getContext("2d");
 
 //-- Obtener Sonidos
-const sonido_raqueta = new Audio("pong-raqueta.mp3");
-const sonido_rebote = new Audio("pong-rebote.mp3");
+const sonido_raqueta = new Audio("file:///C:/Users/Carmen/github/2019-2020-CSAAI-Practicas/P3/pong-raqueta.mp3");
+const sonido_rebote = new Audio("file:///C:/Users/Carmen/github/2019-2020-CSAAI-Practicas/P3/pong-rebote.mp3");
 
 //-- Estados del juego
 const ESTADO = {

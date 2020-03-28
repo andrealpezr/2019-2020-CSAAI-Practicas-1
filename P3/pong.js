@@ -6,6 +6,12 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 
 const ctx = canvas.getContext("2d");
 
+//-- Obtener Sonidos
+const sonido_raqueta = new Audio("pong-raqueta.mp3");
+const sonido_rebote = new Audio("pong-rebote.mp3");
+//-- Crear los elementos de sonido
+const click_sound = new Audio('click.mp3');
+
 //-- Objeto: Bola
 const bola = {
 
@@ -118,21 +124,33 @@ function animacion()
 //-- Hay colisión. Cambiar el signo de la bola
   if (bola.x >= canvas.width) {
     bola.vx = bola.vx * -1;
+    sonido_rebote.currentTime = 0;
+    sonido_rebote.play();
   }else if(bola.x <= 0){
     bola.vx = bola.vx * -1;
+    sonido_rebote.currentTime = 0;
+    sonido_rebote.play();
   }else if(bola.y >= canvas.height){
     bola.vy = bola.vy * -1;
+    sonido_rebote.currentTime = 0;
+    sonido_rebote.play();
   }else if(bola.y <= 0 ){
     bola.vy = bola.vy * -1;
+    sonido_rebote.currentTime = 0;
+    sonido_rebote.play();
   }
 
   //-- Comprobar si hay colisión con la raqueta izquierda
   if (bola.x >= raqI.x && bola.x <=(raqI.x + raqI.width) &&
       bola.y >= raqI.y && bola.y <=(raqI.y + raqI.height)) {
     bola.vx = bola.vx * -1;
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play()
   }else if (bola.x >= raqD.x && bola.x <=(raqD.x + raqD.width) &&
       bola.y >= raqD.y && bola.y <=(raqD.y + raqD.height)){
     bola.vx = bola.vx * -1;
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play()
     }
 
   //-- Actualizar coordenada x de la bola, en funcion de
@@ -170,6 +188,9 @@ start.onclick = () => {
   bola.x += bola.x_ini;
   bola.vx += bola.vx_ini;
   console.log("Saque!");
+  //-- Reproducir sonido
+  click_sound.currentTime = 0;
+  click_sound.play();
 }
 
 //-- Obtener el boton de reset
@@ -179,6 +200,9 @@ reset.onclick = () => {
   bola.x = bola.x_ini;
   bola.vx = bola.vx_ini;
   console.log("Reset!");
+  //-- Reproducir sonido
+  click_sound.currentTime = 0;
+  click_sound.play();
 }
 
 //-- Retrollamada de las teclas OTRA FORMA
@@ -191,6 +215,9 @@ window.onkeydown = (e) => {
       bola.vx += bola.vx_ini;
       raqD.y += -raqD.v_ini;
       raqI.v += raqI.v;
+      //-- Reproducir sonido
+      sonido_raqueta.currentTime = 0;
+      sonido_raqueta.play();
       break;
     case "q":
       console.log('up');
