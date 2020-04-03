@@ -11,7 +11,7 @@ operacion = {
   resta : document.getElementById("resta"),
   multiplicacion : document.getElementById("multiplicacion"),
   division : document.getElementById("division"),
-},
+}
 
 
 //Variable let
@@ -29,7 +29,8 @@ function encender(boton){
   } else{
     display.innerHTML == " ";
   }
-}
+
+
 function digito(boton){
   if(display.innerHTML=="0") {
     display.innerHTML = boton.value;
@@ -42,17 +43,17 @@ operacion.onclick = () => {
   display.innerHTML += operacion.suma;
 }
 
-resta.onclick = () => {
-  display.innerHTML += resta.value;
-}
-
-division.onclick = () => {
-  display.innerHTML += division.value;
-}
-
-multiplicacion.onclick = () => {
-  display.innerHTML += multiplicacion.value;
-}
+// resta.onclick = () => {
+//   display.innerHTML += resta.value;
+// }
+//
+// division.onclick = () => {
+//   display.innerHTML += division.value;
+// }
+//
+// multiplicacion.onclick = () => {
+//   display.innerHTML += multiplicacion.value;
+// }
 
 igual.onclick = () => {
   display.innerHTML = eval(display.innerHTML);
