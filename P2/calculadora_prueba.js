@@ -22,14 +22,6 @@ for(i=0; i<numeros.length; i++){
   }
 }
 
-function encender(boton){
-  console.log(boton.value);
-  if ((display.innerHTML == " ") & (boton.value == "AC")) {
-    display.innerHTML == "0" ;
-  } else{
-    display.innerHTML == " ";
-  }
-
 
 function digito(boton){
   if(display.innerHTML=="0") {
@@ -40,6 +32,7 @@ function digito(boton){
 }
 
 operacion.onclick = () => {
+  console.log(operacion);
   display.innerHTML += operacion.suma;
 }
 
@@ -65,4 +58,8 @@ coma.onclick = () => {
 
 reset.onclick = () => {
   display.innerHTML = "0";
+}
+
+del.onclick = (ev) => {
+   display.innerHTML = display.innerHTML.slice(0,display.innerHTML.length - 1);
 }
