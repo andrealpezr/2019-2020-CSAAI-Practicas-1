@@ -5,20 +5,18 @@ coma = document.getElementById("coma")
 igual = document.getElementById("igual")
 reset = document.getElementById("reset")
 del = document.getElementById("delete")
-// Los estados de la máquina los implementamos mediante un objeto cuyas propiedades
-// son los estados, y a los que asinamos un número diferente.
+
+
 const ESTADO  =  {
   INIT : 0 ,
   OP1 : 1 ,
-  OPERACIÓN : 2 ,
+  OPERATION : 2 ,
   OP2 : 3 ,
-  OPERADO : 4 ,
-},
+  COMA: false,
+}
 //-- Variable de estado
 let estado = ESTADO.INIT;
 
-// Necesitamos tener tres funciones de retrollamada: una para los dígitos, otra
-// para los operandos y otra para la tecla igual, que calcula el resultado final
 
 //Variable let
 let numeros = document.getElementsByClassName("numero");
@@ -32,8 +30,14 @@ function digito(boton){
   if(estado == ESTADO.INIT) {
     display.innerHTML = boton;
     estado = ESTADO.OP1;
-  }else{
+    console.log(estado, "digito");
+  }else if (estado == ESTADO.OP1 || estado == ESTADO.OP2 || estado == ESTADO.OPERATION){
     display.innerHTML += boton;
+    console.log(estado,"digito");
+    if (estado == ESTADO.OPERATION) {
+      estado = ESTADO.OP2;
+      console.log(estado);
+    }
   }
 }
 
@@ -41,36 +45,41 @@ function digito(boton){
 let op = document.getElementsByClassName("operacion");
 for(i=0; i<op.length; i++){
    op[i].onclick = (ev) => {
-   console.log(display.innerHTML[display.innerHTML.length-1]);
-   if(display.innerHTML[display.innerHTML.length-1] == ev.target.value){
-      alert('No se pueden poner dos operaciones seguidas');
-    }else{
-      display.innerHTML += ev.target.value;
-    }
-  }
+     console.log("hola");
+     if(estado == ESTADO.OP1){
+       display.innerHTML += ev.target.value;
+       estado = ESTADO.OPERATION;
+       console.log(estado,"op");
+     }
+   }
 }
 
-for(i=0; i<numeros.length; i++){
- coma.onclick = (ev) => {
-   console.log(display.innerHTML[display.innerHTML.length-1]);
-   if(display.innerHTML[display.innerHTML.length-1] == "."){
-     alert('No se pueden poner dos puntos seguidos');
+coma.onclick = (ev) => {
+  if(ESTADO.COMA){
+    console.log("No se pueden poner dos comas seguidas");
   }else{
     display.innerHTML += ev.target.value;
+    ESTADO.COMA = true;
   }
- }
 }
 
-//-- Evaluar la expresion
 igual.onclick = () => {
-  display.innerHTML = eval(display.innerHTML);
-  estado.igual = true;
-}
+  console.log("no va?");
+  console.log(estado);
+  if(estado == ESTADO.OP2){
+    display.innerHTML = eval(display.innerHTML);
+    estado = ESTADO.OP1;
+    ESTADO.COMA = false;
+    console.log(estado,"igual");
+    }
+  }
 
 //-- Poner a cero la expresion
 reset.onclick = (ev) => {
   display.innerHTML = '0';
-  //remplace ??
+  estado = ESTADO.INIT;
+  ESTADO.COMA = false;
+  console.log(estado,"reset");
 }
 
 del.onclick = (ev) => {
