@@ -118,8 +118,6 @@ function animacion()
   //-- Actualizar la raqueta con la velocidad actual
   raqD.y += raqD.v;
   raqI.y += raqI.v;
-  console.log('no seeeeee');
-
 
 //-- Hay colisión. Cambiar el signo de la bola
   if (bola.x >= canvas.width) {
@@ -153,8 +151,7 @@ function animacion()
     sonido_raqueta.play()
     }
 
-  //-- Actualizar coordenada x de la bola, en funcion de
-  //-- su velocidad
+  //-- Actualizar coordenada x de la bola, en funcion de su velocidad
   bola.x += bola.vx;
 
   //-- Borrar la pantalla
