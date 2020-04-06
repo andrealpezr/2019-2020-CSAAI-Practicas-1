@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Ping pong</title>
+    <title>El Pong</title>
     <link rel="stylesheet" href="pong.css">
     <script src="pong.js" defer> </script>
     <!-- ficheros incluidos -->
@@ -11,26 +11,26 @@
   </head>
   <body>
     <div class="instrucciones">
+      <h2>Instruciiones del juego:</h2><br>
       <p> Start -- tecla espacio</p>
       <p> Move up -- tecla q</p>
-      <p> Move down -- tecla a</p>
+      <p> Move down -- tecla a</p><br>
+      <h2>Niveles:</h2><br>
+      <p>fácil       medio        dificil</p>
+      <button type="button" id="easy"></button>
+      <button type="button" id="medium"></button>
+      <button type="button" id="hard"></button><br>
     </div><br><br>
 
     <div class="juego">
-    <p>MI PING PONG</p>
+    <h1>PONG</h1><br>
     <canvas id="canvas" width="600" height = "400"></canvas>
     <div class="titulo">
       <img src="titulo.JPG" alt=".">
     </div>
+    <p>start           reset</p>
     <button type="button" id="start"></button>
     <button type="button" id="reset"></button>
-    <p>start</p>
-    <p>reset</p>
-    <br>
-    <p>Level:</p>
-    <button type="button" id="easy"></button>
-    <button type="button" id="medium"></button>
-    <button type="button" id="hard"></button><br>
     <img src="altavoz.png" alt="." id= "altavoz">
   </div>
   </body>

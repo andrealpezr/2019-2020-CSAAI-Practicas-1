@@ -13,12 +13,13 @@ button{
   height: 20px;
   background-color: black;
   border-radius: 40px;
-  margin-left: 60px;
+  margin-left: 35px;
+  margin-right: 50px;
   float: left;
 }
 .instrucciones{
   background-color: rgba(255, 255, 255, 0.75);
-  padding: 15px;
+  padding: 20px 20px 20px 20px;
   margin: 25px;
 }
 .juego{
@@ -48,14 +49,25 @@ img{
 }
 
 #altavoz{
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   position: relative;
-  left: 180px;
+
 }
+
 #canvas{
   background-color: black;
 
+}
+
+h1{
+  font-family: "p1";
+  position: relative;
+  left: 220px;
+}
+
+h2{
+  font-family: "p1";
 }
 
 p{
