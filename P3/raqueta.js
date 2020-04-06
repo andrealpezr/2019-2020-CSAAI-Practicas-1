@@ -31,12 +31,6 @@ class Raqueta
     this.y = this.y_ini;
   }
 
-  //-- Actualizar la posición de la raqueta
-  update()
-  {
-    this.y += this.v;
-  }
-
   //-- Dibujar la raqueta
   draw()
   {
@@ -50,4 +44,11 @@ class Raqueta
     //-- Pintar!
     this.ctx.fill();
   }
+
+  //-- Actualizar la posición de la raqueta
+  update()
+  {
+    this.y += this.v;
+  }
+  
 }
