@@ -1,5 +1,6 @@
+
 class Bola {
-  constructor(ctx) {
+  constructor(ctx , level) {
     //-- Guardar el contexto de dibujo
     this.ctx = ctx;
 
@@ -15,8 +16,8 @@ class Bola {
     this.y = 0;
 
     //-- Velocidad inicial de la bola
-    this.vx_ini = 6;
-    this.vy_ini = 3;
+    this.vx_ini = 5*level;
+    this.vy_ini = 2*level;
 
     //-- Velocidad genérica de la bola
     //-- Inicialmente a cero
@@ -41,6 +42,7 @@ class Bola {
     //-- Inicializa la bola: A su posicion inicial
     this.x = this.x_ini;
     this.y = this.y_ini;
+    this.vx = this.vx_ini;
   }
 
   update() {
