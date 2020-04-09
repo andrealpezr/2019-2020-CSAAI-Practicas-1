@@ -11,48 +11,38 @@ const sonido_rebote = new Audio("pong-rebote.mp3");
 //-- Crear los elementos de sonido
 const click_sound = new Audio('click.mp3');
 
-//-- Objeto: Bola
-const bola = {
 
-  size : 5,
-
-  x_ini : 100,
-  y_ini : 200,
-
-  //-- Posicion generica de la bola
-  x : 0,
-  y : 0,
-
-  //-- Velocidad inicial de la bola
-  vx_ini : 6,
-  vy_ini : 3,
-
-  //-- Velocidad genérica de la bola
-  vx : 0,
-  vy : 0,
+const ESTADO = {
+  INIT: 0,
+  SAQUE: 1,
+  JUGANDO: 2,
+  TANTO_J1 : 0,
+  TANTO_J2 : 0,
 }
+//-- Arrancamos desde el estado inicial
+let estado = ESTADO.INIT;
 
+level = 0;
+let nivel = document.getElementsByClassName("level");
+for(i=0; i<nivel.length; i++){
+  nivel[i].onclick = (ev) => {
+       level = ev.target.value;
+       console.log(ev.target.value);
+       estado = ESTADO.SAQUE;
+   }
+}
 
 function draw() {
 
   //---- Dibujar la Bola
-  ctx.beginPath();
-  ctx.fillStyle='white';
-
-  //-- x,y, anchura, altura
-  ctx.rect(bola.x, bola.y, bola.size, bola.size);
-  ctx.fill();
-
-  //---- Dibujar las raquetas
-  ctx.beginPath();
-  ctx.fillStyle='white';
+  if (estado == ESTADO.SAQUE){
+    console.log(estado);
+    bola.draw();
+  }
 
   //-- Dibujar las raquetas
   raqI.draw();
   raqD.draw();
-
-  //pintar
-  ctx.fill();
 
   //---- Dibujar la red
   ctx.beginPath();
@@ -69,13 +59,31 @@ function draw() {
   ctx.stroke();
 
   //---- Dibujar el tanteo
-  ctx.font = "100px Arial";
+  ctx.font = "90px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText("0", 200, 80);
-  ctx.fillText("1", 340, 80);
+  ctx.fillText(ESTADO.TANTO_J1, 200, 80);
+  ctx.fillText(ESTADO.TANTO_J2, 340, 80);
+
+  //-- Dibujar el texto de sacar
+  if (estado == ESTADO.SAQUE) {
+    console.log(estado);
+    ctx.font = "40px Arial";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("Pulsa Start!", 30, 350);
+  }
+
+
+  //-- Dibujar el texto de comenzar
+  console.log(estado);
+  if (estado == ESTADO.INIT) {
+    console.log(estado);
+    ctx.font = "40px Arial";
+    ctx.fillStyle = "green";
+    ctx.fillText("Pulsa un nivel!", 30, 350);
+  }
 }
 
-  //-- Actualizar las posiciones de los objetos móviles
+
 function animacion()
 {
 
@@ -105,6 +113,20 @@ function animacion()
     sonido_rebote.play();
   }
 
+  if (bola.x <= bola.size) {
+     estado = ESTADO.SAQUE;
+     console.log(estado);
+     ESTADO.TANTO_J1 += 1;
+     console.log("Tanto!!!!");
+     bola.init();
+  }else if (bola.x > canvas.width){
+     estado = ESTADO.SAQUE;
+     console.log(estado);
+     ESTADO.TANTO_J2 += 1;
+     console.log("Tanto!!!!");
+     bola.init();
+  }
+
   //-- Comprobar si hay colisión con la raqueta izquierda
   if (bola.x >= raqI.x && bola.x <=(raqI.x + raqI.width) &&
       bola.y >= raqI.y && bola.y <=(raqI.y + raqI.height)) {
@@ -118,9 +140,8 @@ function animacion()
     sonido_raqueta.play()
     }
 
-  //-- Actualizar coordenada x de la bola, en funcion de
-  //-- su velocidad
-  bola.x += bola.vx;
+  //-- Actualizar coordenada x de la bola, en funcion de su velocidad
+  bola.update();
 
   //-- Borrar la pantalla
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -130,9 +151,9 @@ function animacion()
 
 }
 
-//-- Inicializa la bola: A su posicion inicial
-bola.x = bola.x_ini;
-bola.y = bola.y_ini;
+//-- Crear la bola
+console.log(level);
+const bola = new Bola(ctx, level);
 
 //-- Crear las raquetas
 const raqI = new Raqueta(ctx);
@@ -143,56 +164,56 @@ raqD.x_ini = 540;
 raqD.y_ini = 300;
 raqD.init();
 
+draw();
 
-// función animacion() se llame periódicamente, con una frecuencia de 60Hz (unos 17ms). Usamos la función setInterval() que ya conocemos para arrancar la animación
+// Usamos la función setInterval() que ya conocemos para arrancar la animación
 setInterval(()=>{
   animacion();
 },16);
 
 //-- Obtener el boton de saque
 const start = document.getElementById("start");
-
-start.onclick = () => {
-  bola.x += bola.x_ini;
-  bola.vx += bola.vx_ini;
-  console.log("Saque!");
-  //-- Reproducir sonido
-  click_sound.currentTime = 0;
-  click_sound.play();
-}
-
 //-- Obtener el boton de reset
 const reset = document.getElementById("reset");
 
-reset.onclick = () => {
-  bola.x = bola.x_ini;
-  bola.vx = bola.vx_ini;
-  console.log("Reset!");
-  //-- Reproducir sonido
-  click_sound.currentTime = 0;
-  click_sound.play();
+if (estado == ESTADO.SAQUE) {
+  start.onclick = () => {
+    estado = ESTADO.JUEGO;
+    console.log(estado);
+    console.log("Saque!");
+
+    //-- Reproducir sonido
+    click_sound.currentTime = 0;
+    click_sound.play();
+  }
+
+  reset.onclick = () => {
+    bola.init();
+    estado = ESTADO.INIT;
+    console.log(estado);
+    console.log("Reset!");
+
+    //-- Reproducir sonido
+    click_sound.currentTime = 0;
+    click_sound.play();
+  }
 }
 
 //-- Retrollamada de las teclas OTRA FORMA
 window.onkeydown = (e) => {
   switch (e.key) {
-    //-- Tecla ESPACIO: Saque
     case " ":
-      console.log('espacio');
-      bola.x += bola.x_ini;
-      bola.vx += bola.vx_ini;
+      estado = ESTADO.JUEGO;
+      console.log(estado);
+      console.log("Saque!");  //////////??????????
+      bola.init();
       raqD.y += -raqD.v_ini;
       raqI.v += raqI.v;
-      //-- Reproducir sonido
-      sonido_raqueta.currentTime = 0;
-      sonido_raqueta.play();
       break;
     case "q":
-      console.log('up');
       raqI.y += raqI.v_ini * -1;
       break;
     case "a":
-      console.log('down');
       raqI.y += raqI.v_ini;
       break;
     case "p":
