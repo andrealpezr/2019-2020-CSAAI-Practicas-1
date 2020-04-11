@@ -15,7 +15,7 @@ class Raqueta
     this.y_ini = 150;
 
     //-- Constante: Velocidad
-    this.v_ini = 3;
+    this.v_ini = 4;
 
     //-- Velocidad (variable)
     this.v = 0;
@@ -25,15 +25,13 @@ class Raqueta
   }
 
   //-- Inicializar la raqueta a su posicion original
-  init()
-  {
+  init(){
     this.x = this.x_ini;
     this.y = this.y_ini;
   }
 
   //-- Dibujar la raqueta
-  draw()
-  {
+  draw(){
     //------- Dibujar las raquetas
     this.ctx.beginPath();
     this.ctx.fillStyle='white';
@@ -46,9 +44,9 @@ class Raqueta
   }
 
   //-- Actualizar la posición de la raqueta
-  update()
-  {
+  update(){
     this.y += this.v;
   }
+
 
 }
