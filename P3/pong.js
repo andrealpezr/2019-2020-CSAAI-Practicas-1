@@ -19,16 +19,6 @@ const ESTADO = {
 //-- Arrancamos desde el estado inicial
 let estado = ESTADO.INIT;
 
-let level = 1; ///////ver como hacer !!!
-let nivel = document.getElementsByClassName("level");
-for(i=0; i<nivel.length; i++){
-  nivel[i].onclick = (ev) => {
-       // level = ev.target.value; no va bien
-       estado = ESTADO.SAQUE;
-   }
-}
-console.log(level, 'lev');
-
 function draw() {
 
   //---- Dibujar la Bola
@@ -65,7 +55,7 @@ function draw() {
   if (estado == ESTADO.SAQUE) {
     console.log(estado, 'pulsa start');
     ctx.font = "40px Arial";
-    ctx.fillStyle = "yellow";
+    ctx.fillStyle = "white";
     ctx.fillText("Pulsa Start!", 30, 350);
   }
 
@@ -74,7 +64,7 @@ function draw() {
   if (estado == ESTADO.INIT) {
     console.log(estado, 'pulsa nivel');
     ctx.font = "40px Arial";
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "white";
     ctx.fillText("Pulsa un nivel!", 30, 350);
   }
 }
@@ -87,60 +77,52 @@ function animacion()
   raqI.update();
   raqD.update();
 
+//-- Ver si hay colisión con las paredes derecha o izquierda.
+  if (bola.x <= 0){
+    bola.vx = bola.vx * -1;
+    if (estado == ESTADO.JUGANDO){
+      ESTADO.TANTO_J1 += 1;
+      console.log("Tanto!!!!");
+    }
+    //-- Reproducir sonido
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play();
 
-//-- Hay colisión. Cambiar el signo de la bola
-  if (bola.x >= canvas.width) {
+  }else if (bola.x >= canvas.width){
     bola.vx = bola.vx * -1;
+    if (estado == ESTADO.JUGANDO){
+      ESTADO.TANTO_J2 += 1;
+      console.log("Tanto!!!!");
+    }
     //-- Reproducir sonido
-    sonido_rebote.currentTime = 0;
-    sonido_rebote.play();
-  }else if(bola.x <= 0){
-    bola.vx = bola.vx * -1;
-    //-- Reproducir sonido
-    sonido_rebote.currentTime = 0;
-    sonido_rebote.play();
-  }else if(bola.y >= canvas.height){
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play();
+  }
+
+  //-- Ver si hay colisión con las paredes de arriba o abajo.
+  if(bola.y <= 0 || bola.y >= canvas.height){
     bola.vy = bola.vy * -1;
-    //-- Reproducir sonido
-    sonido_rebote.currentTime = 0;
-    sonido_rebote.play();
-  }else if(bola.y <= 0 ){
-    bola.vy = bola.vy * -1;
+
     //-- Reproducir sonido
     sonido_rebote.currentTime = 0;
     sonido_rebote.play();
   }
 
-  if (bola.x <= bola.size) {
-     estado = ESTADO.SAQUE;
-     console.log(estado,'marco');
-     ESTADO.TANTO_J1 += 1;
-     console.log("Tanto!!!!");
-     bola.init();
-
-  }else if (bola.x > canvas.width){
-     estado = ESTADO.SAQUE;
-     console.log(estado, 'marco');
-     ESTADO.TANTO_J2 += 1;
-     console.log("Tanto!!!!");
-     bola.init();
-
-  }
-
-  //-- Comprobar si hay colisión con la raqueta izquierda
+  //-- Comprobar si hay colisión con las raquetas
   if (bola.x >= raqI.x && bola.x <=(raqI.x + raqI.width) &&
       bola.y >= raqI.y && bola.y <=(raqI.y + raqI.height)) {
-    bola.vx = bola.vx * -1;
-    //-- Reproducir sonido
-    sonido_raqueta.currentTime = 0;
-    sonido_raqueta.play()
+     bola.vx = bola.vx * -1;
+     //-- Reproducir sonido
+     sonido_raqueta.currentTime = 0;
+     sonido_raqueta.play();
   }else if (bola.x >= raqD.x && bola.x <=(raqD.x + raqD.width) &&
-      bola.y >= raqD.y && bola.y <=(raqD.y + raqD.height)){
-    bola.vx = bola.vx * -1;
-    //-- Reproducir sonido
-    sonido_raqueta.currentTime = 0;
-    sonido_raqueta.play()
-    }
+       bola.y >= raqD.y && bola.y <=(raqD.y + raqD.height)){
+     bola.vx = bola.vx * -1;
+     //-- Reproducir sonido
+     sonido_raqueta.currentTime = 0;
+     sonido_raqueta.play();
+     }
+
 
   //-- Actualizar coordenada x de la bola, en funcion de su velocidad
   bola.update();
@@ -154,7 +136,28 @@ function animacion()
 }
 
 //-- Crear la bola
-const bola = new Bola(ctx, level);
+const bola = new Bola(ctx);
+
+var nivel1 = document.getElementById('nivel1');
+var nivel2 = document.getElementById('nivel2');
+var nivel3 = document.getElementById('nivel3');
+
+//-- Cambiar las velocidades de la bola según el nivel del juego
+  nivel1.onclick = () => {
+      bola.vx_ini = 3;
+      bola.vy_ini = 3;
+      estado = ESTADO.SAQUE;
+   }
+   nivel2.onclick = () =>{
+     bola.vx_ini = 5;
+     bola.vy_ini = 5;
+     estado = ESTADO.SAQUE;
+   }
+   nivel3.onclick = () =>{
+     bola.vx_ini = 7;
+     bola.vy_ini = 7;
+     estado = ESTADO.SAQUE;
+   }
 
 //-- Crear las raquetas
 const raqI = new Raqueta(ctx);
@@ -162,10 +165,9 @@ const raqD = new Raqueta(ctx);
 
 //-- Cambiar las coordenadas de la raqueta derecha
 raqD.x_ini = 540;
-raqD.y_ini = 300;
+raqD.y_ini = 150;
 raqD.init();
 
-draw();
 
 // Usamos la función setInterval() que ya conocemos para arrancar la animación
 setInterval(()=>{
@@ -177,21 +179,24 @@ const start = document.getElementById("start");
 //-- Obtener el boton de reset
 const reset = document.getElementById("reset");
 
-if (estado == ESTADO.SAQUE) {
-  start.onclick = () => {
-    estado = ESTADO.JUEGO;
-    console.log(estado,'start');
-    console.log("Saque!");
+start.onclick = () => {
+  bola.init();
+  ESTADO.TANTO_J1 = 0;
+  ESTADO.TANTO_J2 = 0;
+    estado = ESTADO.JUGANDO;
+  console.log(estado,'start');
+  console.log("Saque!");
 
   }
 
-  reset.onclick = () => {
-    bola.init();
-    estado = ESTADO.INIT;
-    console.log(estado, 'reset');
-    console.log("Reset!");
+reset.onclick = () => {
+  bola.init();
+  ESTADO.TANTO_J1 = 0;
+  ESTADO.TANTO_J2 = 0;
+  estado = ESTADO.INIT;
+  console.log(estado, 'reset');
+  console.log("Reset!");
 
-  }
 }
 
 //-- Retrollamada de las teclas OTRA FORMA
@@ -200,12 +205,12 @@ window.onkeydown = (e) => {
     return;
 
   switch (e.key) {
-    case "q":
-      raqI.y += raqI.v_ini * -1;
-      break;
-    case "a":
-      raqI.y += raqI.v_ini;
-      break;
+   case "q":
+     raqI.y += raqI.v_ini * -1;
+       break;
+   case "a":
+     raqI.y += raqI.v_ini;
+       break;
     case "p":
       raqD.v = raqD.v_ini * -1;
       break;
@@ -219,14 +224,18 @@ window.onkeydown = (e) => {
         sonido_raqueta.currentTime = 0;
         sonido_raqueta.play();
 
-        console.log(estado);
+        console.log(estado,'espacio');
         console.log("Saque!");
 
         //-- Llevar bola a su posicion incicial
         bola.init();
 
+        //-- Reinicio el marcador
+        ESTADO.TANTO_J1 = 0;
+        ESTADO.TANTO_J2 = 0;
+
         //-- Darle velocidad
-        //bola.vx = bola.vx_ini;
+        bola.vx = bola.vx_ini;
 
         //-- Cambiar al estado de jugando!
         estado = ESTADO.JUGANDO;
