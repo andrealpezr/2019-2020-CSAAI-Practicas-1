@@ -12,7 +12,7 @@ class Raqueta
 
     //-- Constante: Posicion inicial
     this.x_ini = 50;
-    this.y_ini = 100;
+    this.y_ini = 150;
 
     //-- Constante: Velocidad
     this.v_ini = 3;
@@ -50,5 +50,5 @@ class Raqueta
   {
     this.y += this.v;
   }
-  
+
 }
