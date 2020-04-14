@@ -78,11 +78,20 @@ function animacion()
   raqD.update();
 
 //-- Ver si hay colisión con las paredes derecha o izquierda.
+//-- Contabilozamos los tantos para conseguir un ganador.
   if (bola.x <= 0){
     bola.vx = bola.vx * -1;
     if (estado == ESTADO.JUGANDO){
-      ESTADO.TANTO_J1 += 1;
-      console.log("Tanto!!!!");
+      if (ESTADO.TANTO_J1 == 6){
+        estado = ESTADO.INIT;
+        bola.init();
+        ESTADO.TANTO_J1 = 0;
+        ESTADO.TANTO_J2 = 0;
+        alert('EL JUGADOR 1 HA GANADO!!! ');
+      }else{
+        ESTADO.TANTO_J1 += 1;
+        console.log("Tanto!!!!");
+      }
     }
     //-- Reproducir sonido
     sonido_raqueta.currentTime = 0;
@@ -91,8 +100,16 @@ function animacion()
   }else if (bola.x >= canvas.width){
     bola.vx = bola.vx * -1;
     if (estado == ESTADO.JUGANDO){
-      ESTADO.TANTO_J2 += 1;
-      console.log("Tanto!!!!");
+      if (ESTADO.TANTO_J2 == 6){
+        estado = ESTADO.INIT;
+        bola.init();
+        ESTADO.TANTO_J1 = 0;
+        ESTADO.TANTO_J2 = 0;
+        alert('EL JUGADOR 2 HA GANADO!!! ');
+      }else{
+        ESTADO.TANTO_J2 += 1;
+        console.log("Tanto!!!!");
+      }
     }
     //-- Reproducir sonido
     sonido_raqueta.currentTime = 0;
@@ -100,12 +117,19 @@ function animacion()
   }
 
   //-- Ver si hay colisión con las paredes de arriba o abajo.
-  if(bola.y <= 0 || bola.y >= canvas.height){
+  if(bola.y <= 0 || bola.y >= canvas.height - 40){
     bola.vy = bola.vy * -1;
 
     //-- Reproducir sonido
     sonido_rebote.currentTime = 0;
     sonido_rebote.play();
+  }
+
+  //-- Ponemos los margenes de las raquetas ?????????????????????????
+  if (raqI.y <= 0 || raqI.y >= (canvas.height - 80)){
+    raqI.y = raqI.y * -1;
+  }else if (raqD.y <= 0 || raqD.y >= (canvas.height - 80)){
+    raqD.y = raqD.y * -1;
   }
 
   //-- Comprobar si hay colisión con las raquetas
@@ -144,18 +168,18 @@ var nivel3 = document.getElementById('nivel3');
 
 //-- Cambiar las velocidades de la bola según el nivel del juego
   nivel1.onclick = () => {
-      bola.vx_ini = 3;
-      bola.vy_ini = 3;
+      bola.vx_ini = 2;
+      bola.vy_ini = 2;
       estado = ESTADO.SAQUE;
    }
    nivel2.onclick = () =>{
-     bola.vx_ini = 5;
-     bola.vy_ini = 5;
+     bola.vx_ini = 3;
+     bola.vy_ini = 3;
      estado = ESTADO.SAQUE;
    }
    nivel3.onclick = () =>{
-     bola.vx_ini = 7;
-     bola.vy_ini = 7;
+     bola.vx_ini = 5;
+     bola.vy_ini = 5;
      estado = ESTADO.SAQUE;
    }
 
@@ -174,20 +198,27 @@ setInterval(()=>{
        animacion();
 },16);
 
+
 //-- Obtener el boton de saque
 const start = document.getElementById("start");
 //-- Obtener el boton de reset
 const reset = document.getElementById("reset");
 
 start.onclick = () => {
+  //-- Llevar bola a su posicion incicial
   bola.init();
+
+  //-- Darle velocidad
+  bola.vx = bola.vx_ini;
+  bola.vy = bola.vy_ini;
+
   ESTADO.TANTO_J1 = 0;
   ESTADO.TANTO_J2 = 0;
-    estado = ESTADO.JUGANDO;
+  estado = ESTADO.JUGANDO;
   console.log(estado,'start');
   console.log("Saque!");
 
-  }
+}
 
 reset.onclick = () => {
   bola.init();
@@ -199,6 +230,7 @@ reset.onclick = () => {
 
 }
 
+
 //-- Retrollamada de las teclas OTRA FORMA
 window.onkeydown = (e) => {
   if (estado == ESTADO.INIT)
@@ -206,11 +238,11 @@ window.onkeydown = (e) => {
 
   switch (e.key) {
    case "q":
-     raqI.y += raqI.v_ini * -1;
-       break;
+      raqI.y += raqI.v_ini * -1;
+      break;
    case "a":
-     raqI.y += raqI.v_ini;
-       break;
+      raqI.y += raqI.v_ini;
+      break;
     case "p":
       raqD.v = raqD.v_ini * -1;
       break;
@@ -220,7 +252,7 @@ window.onkeydown = (e) => {
     case " ":
       //-- El saque solo funciona en el estado de SAQUE
       if (estado == ESTADO.SAQUE) {
-        //-- Reproducir sonido
+        // //-- Reproducir sonido
         sonido_raqueta.currentTime = 0;
         sonido_raqueta.play();
 
@@ -236,12 +268,12 @@ window.onkeydown = (e) => {
 
         //-- Darle velocidad
         bola.vx = bola.vx_ini;
+        bola.vy = bola.vy_ini;
 
         //-- Cambiar al estado de jugando!
         estado = ESTADO.JUGANDO;
 
-        return false; //?
-        // break;
+        return false;
       }
     default:
   }
