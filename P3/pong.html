@@ -11,27 +11,36 @@
   </head>
   <body>
     <div class="instrucciones">
-      <h2>Instruciiones del juego:</h2><br>
+      <h2>INSTRUCCIONES DEL JUEGO:</h2>
+      <p>Pong es un juego que simula un tenis de mesa. El objetivo consiste en que
+      uno de los jugadores consiga llegar a 8 puntos antes que el oponente; este
+      será el GANADOR. Estos puntos se obtienen cuando el jugador adversario falla
+      al devolver la pelota. En este juego el jugador controla una paleta y competirá
+      contra un oponente controlado por computadora.</p>
+      <p>NOTA: Una vez finalizado el juego, para volver a empezar pulse RESET.</p><br>
+
+      <h2>TECLAS USADAS:</h2>
       <p> Start -- tecla espacio</p>
-      <p> Move up -- tecla q</p>
-      <p> Move down -- tecla a</p><br>
-      <h2>Niveles:</h2><br>
-      <p>fácil       medio        difícil</p>
+      <p> Move up -- tecla p</p>
+      <p> Move down -- tecla l</p><br>
+      <h2>NIVELES:</h2>
+      <p>Fácil       Medio        Difícil</p>
       <button type="button" id="nivel1"></button>
       <button type="button" id="nivel2"></button>
-      <button type="button" id="nivel3"></button><br>
+      <button type="button" id="nivel3"></button><br><br>
+
     </div><br><br>
 
     <div class="juego">
-    <h1>PONG</h1><br>
-    <canvas id="canvas" width="600" height = "400"></canvas>
-    <div class="titulo">
-      <img src="titulo.JPG" alt=".">
+      <h1>PONG</h1><br>
+      <canvas id="canvas" width="600" height = "400"></canvas>
+      <div class="titulo">
+        <img src="titulo.JPG" alt=".">
+      </div>
+      <p>Start</p>
+      <button type="button" id="start"></button><br>
+      <p>Reset</p>
+      <button type="button" id="reset"></button>
     </div>
-    <p>start           reset</p>
-    <button type="button" id="start"></button>
-    <button type="button" id="reset"></button>
-    <img src="altavoz.png" alt="." id= "altavoz">
-  </div>
   </body>
 </html>

@@ -9,12 +9,11 @@ body{
 }
 
 button{
-  width: 60px;
+  width: 70px;
   height: 20px;
   background-color: black;
   border-radius: 40px;
-  margin-left: 35px;
-  margin-right: 50px;
+  margin-right: 90px;
   float: left;
 }
 .instrucciones{
@@ -48,13 +47,6 @@ img{
   left: 150px;
 }
 
-#altavoz{
-  width: 100px;
-  height: 100px;
-  position: relative;
-
-}
-
 #canvas{
   background-color: black;
 
@@ -72,5 +64,6 @@ h2{
 
 p{
   font-family: "p1";
-  font-size: 25px;
+  line-height: 40px;
+  font-size: 20px;
 }
