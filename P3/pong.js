@@ -13,6 +13,7 @@ const ESTADO = {
   INIT: 0,
   SAQUE: 1,
   JUGANDO: 2,
+  GANADOR:3,
   TANTO_J1 : 0,
   TANTO_J2 : 0,
 }
@@ -60,12 +61,25 @@ function draw() {
   }
 
   //-- Dibujar el texto de comenzar
-  console.log(estado);
   if (estado == ESTADO.INIT) {
     console.log(estado, 'pulsa nivel');
     ctx.font = "40px Arial";
     ctx.fillStyle = "white";
     ctx.fillText("Pulsa un nivel!", 30, 350);
+  }
+
+  if (estado == ESTADO.GANADOR){
+    //-- Borrar la pantalla
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("ENHORABUENA!!!", 100, 100);
+    ctx.font = "40px Arial";
+    ctx.fillText("Goles J1:", 100, 250);
+    ctx.fillText("Goles J2:", 360, 250);
+    ctx.fillText(ESTADO.TANTO_J1, 140, 300);
+    ctx.fillText(ESTADO.TANTO_J2, 400, 300);
+
   }
 }
 
@@ -82,16 +96,11 @@ function animacion()
   if (bola.x <= 0){
     bola.vx = bola.vx * -1;
     if (estado == ESTADO.JUGANDO){
+      ESTADO.TANTO_J1 += 1;
       if (ESTADO.TANTO_J1 == 6){
-        estado = ESTADO.INIT;
-        bola.init();
-        ESTADO.TANTO_J1 = 0;
-        ESTADO.TANTO_J2 = 0;
-        alert('EL JUGADOR 1 HA GANADO!!! ');
-      }else{
-        ESTADO.TANTO_J1 += 1;
-        console.log("Tanto!!!!");
+        estado = ESTADO.GANADOR;
       }
+      console.log("Tanto!!!!");
     }
     //-- Reproducir sonido
     sonido_raqueta.currentTime = 0;
@@ -100,16 +109,11 @@ function animacion()
   }else if (bola.x >= canvas.width){
     bola.vx = bola.vx * -1;
     if (estado == ESTADO.JUGANDO){
-      if (ESTADO.TANTO_J2 == 6){
-        estado = ESTADO.INIT;
-        bola.init();
-        ESTADO.TANTO_J1 = 0;
-        ESTADO.TANTO_J2 = 0;
-        alert('EL JUGADOR 2 HA GANADO!!! ');
-      }else{
         ESTADO.TANTO_J2 += 1;
+        if (ESTADO.TANTO_J2 == 6){
+          estado = ESTADO.GANADOR;
+        }
         console.log("Tanto!!!!");
-      }
     }
     //-- Reproducir sonido
     sonido_raqueta.currentTime = 0;
@@ -125,7 +129,7 @@ function animacion()
     sonido_rebote.play();
   }
 
-  //-- Ponemos los margenes de las raquetas ?????????????????????????
+  //-- Ponemos los margenes de las raquetas
   if (raqI.y <= 0 || raqI.y >= (canvas.height - 80)){
     raqI.y = raqI.y * -1;
   }else if (raqD.y <= 0 || raqD.y >= (canvas.height - 80)){
@@ -207,7 +211,6 @@ const reset = document.getElementById("reset");
 start.onclick = () => {
   //-- Llevar bola a su posicion incicial
   bola.init();
-
   //-- Darle velocidad
   bola.vx = bola.vx_ini;
   bola.vy = bola.vy_ini;
