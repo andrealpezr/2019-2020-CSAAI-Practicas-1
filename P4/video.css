@@ -1,0 +1,24 @@
+body{
+  background-image: white;
+  font-family: "typewrite";
+}
+
+ @font-face {    /* no me sale */
+  font-family: "typewrite";
+  src : url( "Typewriter dry Bold.otf" );    /* veeeeer */
+}
+
+video{
+  /* top - right - down - left */
+  margin: 25px 5px 20px 5px;
+
+}
+
+button{
+  height: 40px;
+  width: 100px;
+  font-family: "typewrite";
+  font-size: 15px;
+  /* top - right - down - left */
+  margin: 20px 150px 20px 150px;
+}
