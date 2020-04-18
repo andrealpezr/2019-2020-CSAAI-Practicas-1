@@ -1,3 +1,16 @@
+// Mejoras:
+// Modo automático: Mediante un botón se activará el modo automático. Si se está en este modo, se
+// retransmiten 3 segundos de cada fuente y se pasa a la siguiente. Los pulsadores de selección
+// no deberán funcionar en este modo. Al apretar el pulsador de modo manual, se vuelve al modo normal
+
+// Reproducción en bucle: Si se activa este modo, cada vez que se selecciona una fuente, se
+//reproduce sólo durante 2 segundos y se vuelve atrás (2 segundos), repitiéndose ese trozo de
+//dos segundos en bucle, constantemente. Mientras está activo ese modo se debe poder cambiar
+//la fuente de vídeo (y el bucle se hará con la nueva fuente)
+
+// Imagen estática: Añadir un cuarto canal que permita mostrar una imagen estática, con un
+//mensaje que ponga "Emisión en Pruebas". Este canal se podrá seleccionar en cualquier momento
+
 console.log("Ejecutando JS...");
 
 //----- Obtener elemento de video y configurarlo
@@ -57,6 +70,7 @@ pause2.onclick = () => {
 }
 pause3.onclick = () => {
   video3.pause();
+//  video3.ended(); otros metodos ; buscar bien
 
   //-- Quitar la fuente de video, para que se muestre la imagen definida en el atributo poster
   video3.src=null;
