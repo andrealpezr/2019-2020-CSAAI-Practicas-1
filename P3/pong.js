@@ -77,8 +77,8 @@ function draw() {
     ctx.font = "40px Arial";
     ctx.fillText("Goles J1:", 100, 250);
     ctx.fillText("Goles J2:", 360, 250);
-    ctx.fillText(ESTADO.TANTO_J1, 140, 300);
-    ctx.fillText(ESTADO.TANTO_J2, 400, 300);
+    ctx.fillText(ESTADO.TANTO_J1, 150, 300);
+    ctx.fillText(ESTADO.TANTO_J2, 410, 300);
 
   }
 }
