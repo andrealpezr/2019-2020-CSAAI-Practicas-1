@@ -102,9 +102,6 @@ function animacion()
       }
       console.log("Tanto!!!!");
     }
-    //-- Reproducir sonido
-    sonido_raqueta.currentTime = 0;
-    sonido_raqueta.play();
 
   }else if (bola.x >= canvas.width){
     bola.vx = bola.vx * -1;
@@ -115,18 +112,13 @@ function animacion()
         }
         console.log("Tanto!!!!");
     }
-    //-- Reproducir sonido
-    sonido_raqueta.currentTime = 0;
-    sonido_raqueta.play();
+
   }
 
   //-- Ver si hay colisión con las paredes de arriba o abajo.
   if(bola.y <= 0 || bola.y >= canvas.height - 40){
     bola.vy = bola.vy * -1;
 
-    //-- Reproducir sonido
-    sonido_rebote.currentTime = 0;
-    sonido_rebote.play();
   }
 
   //-- Ponemos los margenes de las raquetas
@@ -140,15 +132,11 @@ function animacion()
   if (bola.x >= raqI.x && bola.x <=(raqI.x + raqI.width) &&
       bola.y >= raqI.y && bola.y <=(raqI.y + raqI.height)) {
      bola.vx = bola.vx * -1;
-     //-- Reproducir sonido
-     sonido_raqueta.currentTime = 0;
-     sonido_raqueta.play();
+
   }else if (bola.x >= raqD.x && bola.x <=(raqD.x + raqD.width) &&
        bola.y >= raqD.y && bola.y <=(raqD.y + raqD.height)){
      bola.vx = bola.vx * -1;
-     //-- Reproducir sonido
-     sonido_raqueta.currentTime = 0;
-     sonido_raqueta.play();
+
      }
 
 
@@ -255,9 +243,6 @@ window.onkeydown = (e) => {
     case " ":
       //-- El saque solo funciona en el estado de SAQUE
       if (estado == ESTADO.SAQUE) {
-        // //-- Reproducir sonido
-        sonido_raqueta.currentTime = 0;
-        sonido_raqueta.play();
 
         console.log(estado,'espacio');
         console.log("Saque!");

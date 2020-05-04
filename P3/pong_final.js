@@ -79,7 +79,6 @@ function draw() {
     ctx.fillText("Goles J2:", 360, 250);
     ctx.fillText(ESTADO.TANTO_J1, 150, 300);
     ctx.fillText(ESTADO.TANTO_J2, 410, 300);
-
   }
 }
 
@@ -95,29 +94,36 @@ function animacion()
 //-- Contabilozamos los tantos para conseguir un ganador.
   if (bola.x <= 0){
     bola.vx = bola.vx * -1;
-    if (estado == ESTADO.JUGANDO){
-      ESTADO.TANTO_J1 += 1;
-      if (ESTADO.TANTO_J1 == 6){
-        estado = ESTADO.GANADOR;
-      }
-      console.log("Tanto!!!!");
-    }
     //-- Reproducir sonido
     sonido_raqueta.currentTime = 0;
     sonido_raqueta.play();
 
+    if (estado == ESTADO.JUGANDO){
+      ESTADO.TANTO_J1 += 1;
+      if (ESTADO.TANTO_J1 == 6){
+        estado = ESTADO.GANADOR;
+        bola.init();
+      }
+      console.log("Tanto!!!!");
+
+    }
+
+
   }else if (bola.x >= canvas.width){
     bola.vx = bola.vx * -1;
+    //-- Reproducir sonido
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play();
+
     if (estado == ESTADO.JUGANDO){
         ESTADO.TANTO_J2 += 1;
         if (ESTADO.TANTO_J2 == 6){
           estado = ESTADO.GANADOR;
+          bola.init();
         }
-        console.log("Tanto!!!!");
+    console.log("Tanto!!!!");
     }
-    //-- Reproducir sonido
-    sonido_raqueta.currentTime = 0;
-    sonido_raqueta.play();
+
   }
 
   //-- Ver si hay colisión con las paredes de arriba o abajo.
@@ -249,9 +255,9 @@ window.onkeydown = (e) => {
     case " ":
       //-- El saque solo funciona en el estado de SAQUE
       if (estado == ESTADO.SAQUE) {
-        // //-- Reproducir sonido
-        sonido_raqueta.currentTime = 0;
-        sonido_raqueta.play();
+        //-- Reproducir sonido
+        //sonido_raqueta.currentTime = 0;
+      //  sonido_raqueta.play();
 
         console.log(estado,'espacio');
         console.log("Saque!");
