@@ -1,0 +1,36 @@
+body{
+  background-color: #577DAC;
+}
+
+h2{
+  color: white;
+  font-family: cursive;
+  position: relative;
+  left: 100px;
+  padding-bottom: 0px;
+}
+
+p{
+  text-align:center;
+  font-family: cursive;
+  color: white;
+  padding-bottom: 0px;
+}
+
+input{
+  position: relative;
+  left: 550px;
+  float: left;
+
+}
+canvas{
+  margin: auto;
+    padding: 10px 20px 20px 20px;
+}
+
+img{
+  margin: auto;
+  padding: 60px 40px 20px 60px;
+  float: left;
+
+}

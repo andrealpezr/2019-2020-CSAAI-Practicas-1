@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Filtros de imágenes</title>
+    <link rel="stylesheet" href="filtro.css">
+    <script src="filtro.js" defer></script>
+  </head>
+  <body>
+    <h2>Imagen original</h2>
+    <img src="black-hole.jpg" id="imagesrc">
+    <h2>Imagen manipulada</h2>
+    <canvas id="canvas"></canvas>
+    <p>Rojo:</p>
+    <input type="range" id="deslizadorR" min="0" max="255" value="255"/>
+    <p id="valueR">255</p>
+    <p>Verde:</p>
+    <input type="range" id="deslizadorG" min="0" max="255" value="255"/>
+    <p id="valueG">255</p>
+    <p>Azul:</p>
+    <input type="range" id="deslizadorB" min="0" max="255" value="255"/>
+    <p id="valueB">255</p>
+  </body>
+</html>
