@@ -49,9 +49,10 @@ deslizador.oninput = () => {
   umbral = deslizador.value
 
   //-- Filtrar la imagen según el nuevo umbral
-  for (let i = 0; i < data.length; i+=4) {
-    if (data[i] > umbral)
-      data[i] = umbral;
+  //for (let i = 0; i < data.length; i+=4) {
+    //if (data[i+1] > umbral)
+      //data[i+1] = umbral;
+      //console.log('holaa');
   }
 
   //-- Poner la imagen modificada en el canvas
