@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="video.css">
   </head>
   <body>
-    <h1>REALIZADOR DE TV</h1>
-
-    <video loop id="emision"></video>
-    <video loop id="video1"></video>
-    <video loop id="video2"></video>
-    <video loop id="video3"></video><br>
-    <button type="button" id ="boton1">SEL</button>
-    <button type="button" id ="boton2">SEL</button>
-    <button type="button" id ="boton3">SEL</button>
+    <video loop id="emision" autoplay loop muted controls></video>
+    <p id='crono'>0:0:0</p>
+    <button type="button" id="bucle">BUCLE</button><br>
+    <div class="v1">
+      <video loop id="video1" autoplay loop muted controls></video><br>
+      <button id ="boton1">VIDEO 1</button>
+    </div>
+    <div class="v2">
+      <video loop id="video2" autoplay loop muted controls></video><br>
+      <button id ="boton2">VIDEO 2</button>
+    </div>
+    <div class="v3">
+      <video loop id="video3" autoplay loop muted controls></video><br>
+      <button id ="boton3">VIDEO 3</button>
+    </div>
 
   </body>
 </html>

@@ -1,7 +1,7 @@
 body{
   font-family: "typewrite";
   text-align: center;
-  background-image: url('5.jpg');
+  background-image: url('3.jpg');
   font-size: 30px;
 }
 
@@ -19,7 +19,7 @@ body{
   margin: 20px 20px 10px 20px;
 }
 
-#boton1, #boton2, #boton3{
+#boton1, #boton2, #boton3, #bucle{
   background: rgba(255, 255, 255, 0.7);
   height: 45px;
   width: 100px;
