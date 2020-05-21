@@ -7,33 +7,32 @@
     <script src="filtro.js" defer></script>
   </head>
   <body>
-    <div class="inicial_img">
-      <h2>Imagen original</h2>
-      <img src="black-hole.jpg" id="imagesrc">
-    </div>
-    <div class="final_img">
-      <h2>Imagen manipulada</h2>
-      <canvas id="canvas"></canvas>
-    </div>
+    <div class="filtros">
+      <div class="inicial_img">
+        <h2>Imagen original</h2>
+        <img src="black-hole.jpg" id="imagesrc">
+      </div>
 
-    <div class="deslizadores">
-      <p>Rojo: </p>
-      <input type="range" id="deslizadorR" min="0" max="255" value="255"/>
-      <p id="valueR">255</p>
+      <div class="final_img">
+        <h2>Imagen manipulada</h2>
+        <canvas id="canvas"> </canvas>
+      </div>
 
-      <p>Verde: </p>
-      <input type="range" id="deslizadorG" min="0" max="255" value="255"/>
-      <p id="valueG">255</p>
+      <div class="valores">
+        <p>R:<input type="range" id="deslizadorR" min="0" max="255" value="255"/></p>
+        <p id="valueR">255</p>
 
-      <p>Azul: </p>
-      <input type="range" id="deslizadorB" min="0" max="255" value="255"/>
-      <p id="valueB">255</p>
-    </div>
+        <p>G:<input type="range" id="deslizadorG" min="0" max="255" value="255"/></p>
+        <p id="valueG">255</p>
 
-    <div class="botones">
+        <p>B:<input type="range" id="deslizadorB" min="0" max="255" value="255"/></p>
+        <p id="valueB">255</p>
+      </div>
       <button id="grises">GRISES</button>
       <button id="colores">COLORES</button>
     </div>
+
+
 
   </body>
 </html>
