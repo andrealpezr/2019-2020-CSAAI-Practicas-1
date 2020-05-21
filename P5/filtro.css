@@ -1,6 +1,6 @@
 body{
-  background-color: #1D397C;
-  margin: 20px 0px 20px 20px;
+  background-color: #FBFBFC;
+  margin: 40px 0px 40px 40px;
   padding-top: 20px;
   font-family: cursive;
   color: white;
@@ -10,6 +10,10 @@ h2{
   position: relative;
   left: 140px;
   padding-bottom: 0px;
+}
+
+p{
+  font-size: 20px;
 }
 
 input{
@@ -53,9 +57,10 @@ button{
 }
 
 .filtros{
- border: 8px solid #363A3E;
- background-color: rgba(255, 255, 255, 0.15);
- padding: 40px;
+ border: 8px solid #FBFBFC;
+ background-color: #57575F;
+ width: 1200px;
+ padding: 10px;
  margin: 0px;
 }
 
