@@ -49,7 +49,7 @@ function filtroRGB(){
   valueG.innerHTML = deslizadorG.value;
   valueB.innerHTML = deslizadorB.value;
 
-  ctx.drawImage(original, 0,0);
+  ctx.drawImage(img, 0,0);
 
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let data = imgData.data
@@ -85,11 +85,11 @@ grises.onclick  = () => {
     var r = data[i];
     var g = data[i+1];
     var b = data[i+2];
-    grey = (r + g + b)/3;
-    data[i] = data[i+1] = data[i+1] = grey;
-    //-- Poner la imagen modificada en el canvas
-    ctx.putImageData(imgData, 0, 0);
+    grey = (3*r + 4*g + b)/8;
+    data[i] = data[i+1] = data[i+2] = grey;
   }
+  //-- Poner la imagen modificada en el canvas
+  ctx.putImageData(imgData, 0, 0);
 }
 
 negativo.onclick  = () => {
