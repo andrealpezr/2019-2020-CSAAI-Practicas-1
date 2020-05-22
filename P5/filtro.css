@@ -1,5 +1,5 @@
 body{
-  background-color: #FBFBFC;
+   background-color: #2E2E55;
   margin: 40px 0px 40px 40px;
   padding-top: 20px;
   font-family: cursive;
@@ -31,15 +31,7 @@ img{
 canvas{
   border: 8px solid #6BF400;
   margin: 10px;
-}
-
-.inicial_img{
-  margin: 0px 20px 0px 20px;
   float: left;
-}
-
-.final_img{
-  margin: 0px 0px 0px 0px;
 }
 
 button{
@@ -48,28 +40,21 @@ button{
   font-family: cursive;
   text-align: center;
   color: white;
-  margin: 10px;
+  margin: 15px;
   font-size: 15px;
   width: 140px;
   height: 40px;
   position: relative;
-  left: 35%;
+  left: 43%;
 }
 
-.filtros{
- border: 8px solid #FBFBFC;
- background-color: #57575F;
- width: 1200px;
- padding: 10px;
- margin: 0px;
+#valueR, #valueG, #valueB{
+  position: relative;
+  left: 4%;
 }
 
 .valores{
   position: relative;
-  left: 42%;
+  left: 25%;
   margin-bottom: 10px;
-}
-#valueR, #valueG, #valueB{
-  position: relative;
-  left: 6%;
 }

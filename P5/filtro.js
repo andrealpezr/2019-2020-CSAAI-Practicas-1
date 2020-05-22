@@ -1,3 +1,11 @@
+//Aplicación de los filtros a diferentes imágenes. Tener en una parte dos o más imágenes iniciales.
+//El filtro se aplicará a la imagen que esté seleccionada (y sólo a ella).
+//Filtro adicional: Imagen especular. Dar la vuelta a la imagen, horizontalmente
+//Filtro adicional: Imagen boca abajo
+//Filtro adicional: Añadir ruido. Sumar o restar valores pequeños generados aleatoriamente
+//para cada uno de los píxeles. De esta forma, cada pixel varía aleatoriamente (y ligeramente) sus valores
+
+
 console.log("Ejecutando JS....")
 
 //-- Obtener elementos del DOM
@@ -15,108 +23,117 @@ const valueR = document.getElementById('valueR');
 const valueG = document.getElementById('valueG');
 const valueB = document.getElementById('valueB');
 
-//--Botones si pongoooooooooooooooooooooooooooooooo  ---------------
+//botones
+const grises = document.getElementById('grises');
+const negativo = document.getElementById('negativo');
+const invertir = document.getElementById('bocaabajo');
+const alternar = document.getElementById('horizontal');
 
-//-- Función de retrollamada de imagen cargada
-//-- Sólo podemos acceder a ella una vez que
-//-- esté totalmente cargada
 img.onload = function () {
 
-  //-- Se establece como tamaño del canvas el mismo
-  //-- que el de la imagen original
+  //-- Se establece como tamaño del canvas el mismo que el de la imagen original
   canvas.width = img.width;
   canvas.height = img.height;
 
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
+  //-- Situar la imagen original en el canvas, sin cambios
   ctx.drawImage(img, 0,0);
-
   console.log("Imagen lista...");
+
+  var original = img;
+
 };
 
-
-//-- Funcion de retrollamada del deslizador
-deslizadorR.oninput = () => {
-  //-- Mostrar el nuevo valor del deslizador
+function filtroRGB(){
+  console.log("filtro RGB");
   valueR.innerHTML = deslizadorR.value;
-
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
-  ctx.drawImage(img, 0,0);
-
-  //-- Obtener la imagen del canvas en pixeles
-  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-  //-- Obtener el array con todos los píxeles
-  let data = imgData.data
-
-  //-- Obtener el umbral de rojo del desliador
-  umbralR = deslizadorR.value
-
-  //-- Filtrar la imagen según el nuevo umbral
-  for (let i = 0; i < data.length; i+=4) {
-    if (data[i] > umbralR)
-      data[i] = umbralR;
-  }
-
-  //-- Poner la imagen modificada en el canvas
-  ctx.putImageData(imgData, 0, 0);
-}
-
-//-- Funcion de retrollamada del deslizador
-deslizadorG.oninput = () => {
-  //-- Mostrar el nuevo valor del deslizador
   valueG.innerHTML = deslizadorG.value;
-
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
-  ctx.drawImage(img, 0,0);
-
-  //-- Obtener la imagen del canvas en pixeles
-  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-  //-- Obtener el array con todos los píxeles
-  let data = imgData.data
-
-  //-- Obtener el umbral de rojo del desliador
-  umbralG = deslizadorG.value
-
-  //-- Filtrar la imagen según el nuevo umbral
-  for (let i = 0; i < data.length; i+=4) {
-    if (data[i+1] > umbralG)
-      data[i+1] = umbralG;
-  }
-
-  //-- Poner la imagen modificada en el canvas
-  ctx.putImageData(imgData, 0, 0);
-}
-
-//-- Funcion de retrollamada del deslizador
-deslizadorB.oninput = () => {
-  //-- Mostrar el nuevo valor del deslizador
   valueB.innerHTML = deslizadorB.value;
 
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
-  ctx.drawImage(img, 0,0);
+  ctx.drawImage(original, 0,0);
 
-  //-- Obtener la imagen del canvas en pixeles
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-  //-- Obtener el array con todos los píxeles
   let data = imgData.data
+  npixels = canvas.width * canvas.height*4
 
-  //-- Obtener el umbral de rojo del desliador
+  umbralR = deslizadorR.value
+  umbralG = deslizadorG.value
   umbralB = deslizadorB.value
+  //-- Filtrar la imagen según el nuevo umbral
+  for (let i = 0; i < npixels; i+=4) {
+    if (data[i] > umbralR){
+      data[i] = umbralR;
+    }
+    if (data[i+1] > umbralG){
+      data[i+1] = umbralG;
+    }
+    if (data[i+2] > umbralB){
+      data[i+2] = umbralB;
+    }
+  }
+  //-- Poner la imagen modificada en el canvas
+  ctx.putImageData(imgData, 0, 0);
+}
+
+grises.onclick  = () => {
+  console.log("filtro de grises");
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let data = imgData.data
+  npixels = canvas.width * canvas.height*4
 
   //-- Filtrar la imagen según el nuevo umbral
   for (let i = 0; i < data.length; i+=4) {
-    if (data[i+2] > umbralB)
-      data[i+2] = umbralB;
+    var r = data[i];
+    var g = data[i+1];
+    var b = data[i+2];
+    grey = (r + g + b)/3;
+    data[i] = data[i+1] = data[i+1] = grey;
+    //-- Poner la imagen modificada en el canvas
+    ctx.putImageData(imgData, 0, 0);
   }
+}
 
-  //-- Poner la imagen modificada en el canvas
-  ctx.putImageData(imgData, 0, 0);
+negativo.onclick  = () => {
+  console.log("Invertimos la imagen");
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let data = imgData.data
+  npixels = canvas.width * canvas.height*4
+
+  for (let i = 0; i < npixels; i+=4) {
+        data[i] = 255 - data[i];
+        data[i+1] = 255 - data[i+1];
+        data[i+2] = 255 - data[i+2];
+    }
+    //-- Poner la imagen modificada en el canvas
+    ctx.putImageData(imgData, 0, 0);
+}
+
+invertir.onclick  = () => {
+  console.log("Invierto la imagen");
+  ctx.translate(0,img.height);
+  ctx.scale(1,-1);
+  ctx.drawImage(img, 0,0);
+}
+
+alternar.onclick  = () => {
+  console.log("Alterno la imagen");
+  ctx.translate(img.width,0);
+  ctx.scale(-1,1);
+  ctx.drawImage(img, 0,0);
+}
+
+//-- Funcion de retrollamada del deslizadorR
+deslizadorR.oninput = () => {
+  filtroRGB();
+}
+
+//-- Funcion de retrollamada del deslizadorG
+deslizadorG.oninput = () => {
+  filtroRGB();
+}
+
+//-- Funcion de retrollamada del deslizadorB
+deslizadorB.oninput = () => {
+  filtroRGB();
 }
 
 console.log("Fin...");
